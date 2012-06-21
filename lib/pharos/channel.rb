@@ -10,7 +10,7 @@ module Pharos
 
     def initialize(name, base_uri, client = Pharos)
       @name = name
-      @path = base_uri + "/push/{#name}/"
+      @path = base_uri + "/push/#{name}/"
       @client = client
       @auth = { username: 'pharos', password: client.secret }
     end
