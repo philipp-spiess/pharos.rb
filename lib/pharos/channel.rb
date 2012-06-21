@@ -27,7 +27,7 @@ module Pharos
         end
       end
 
-      options = { query: { to: receivers, message: body }, basic_auth: @auth}
+      options = { body: { to: receivers, message: body }, basic_auth: @auth}
       self.class.post(@path, options)
     end
   end
