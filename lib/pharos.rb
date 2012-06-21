@@ -54,4 +54,3 @@ end
 
 require 'pharos/channel'
 require 'pharos/request'
-require 'pharos/webhook'
