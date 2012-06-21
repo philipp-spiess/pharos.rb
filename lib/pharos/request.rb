@@ -10,7 +10,7 @@ module Pharos
       end  
 
       def post(path, to, message)
-        options = { query: { to: to, :message message }, basic_auth: @auth}
+        options = { query: { to: to, message: message }, basic_auth: @auth}
         self.class.post(path, options)
       end
 
