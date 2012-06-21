@@ -5,7 +5,7 @@ module Pharos
 
     def initialize(options = {})
       options = {
-        :base_uri => 'pharos.saloon.io',
+        :base_uri => 'http://pharos.saloon.io',
       }.merge(options)
       @base_uri, @secret = options.values_at(
         :base_uri, :secret
