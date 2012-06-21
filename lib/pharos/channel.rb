@@ -24,7 +24,6 @@ module Pharos
         begin
           MultiJson.encode(data)
         rescue MultiJson::DecodeError => e
-          Pharos.logger.error("Could not convert #{data.inspect} into JSON")
           raise e
         end
       end
