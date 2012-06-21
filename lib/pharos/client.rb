@@ -1,8 +1,8 @@
 module Pharos
   class Client
+    
     attr_accessor :base_uri, :secret
 
-    # Initializes the client object.
     def initialize(options = {})
       options = {
         :base_uri => 'pharos.saloon.io',
@@ -12,16 +12,10 @@ module Pharos
       )
     end
 
-    # Return a channel by name
-    #
-    # @example
-    #   Pharos['my-channel']
-    # @return [Channel]
-    # @raise [ConfigurationError] unless secret has been configured
     def [](channel_name)
       raise ConfigurationError, 'Missing client configuration: please check that secret is configured.' unless configured?
       @channels ||= {}
-      @channels[channel_name.to_s] ||= Channel.new(@base_uri, channel_name, self)
+      @channels[channel_name.to_s] ||= Channel.new(channel_name, self)
     end
 
     private

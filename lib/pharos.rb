@@ -1,4 +1,3 @@
-#autoload 'Logger', 'logger'
 require 'uri'
 require 'forwardable'
 
@@ -8,18 +7,13 @@ require 'pharos/client'
 #
 module Pharos
 
-  class Error < RuntimeError; end
-  class AuthenticationError < Error; end
   class ConfigurationError < Error; end
-  class HTTPError < Error; attr_accessor :original_error; end
 
   class << self
     extend Forwardable
 
-    def_delegators :default_client, :scheme, :host, :port, :secret
-    def_delegators :default_client, :scheme=, :host=, :port=, :secret=
-
-    attr_writer :logger
+    def_delegators :default_client, :base_uri, :secret
+    def_delegators :default_client, :base_uri=, :secret=
 
     # Return a channel by name
     #
@@ -36,14 +30,6 @@ module Pharos
       end
     end
 
-    def logger
-      @logger ||= begin
-        log = Logger.new($stdout)
-        log.level = Logger::INFO
-        log
-      end
-    end
-
     private
 
     def default_client
@@ -53,4 +39,3 @@ module Pharos
 end
 
 require 'pharos/channel'
-require 'pharos/request'
