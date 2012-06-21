@@ -8,10 +8,9 @@ module Pharos
 
     attr_reader :name
 
-    def initialize(name, client = Pharos)
+    def initialize(name, base_uri, client = Pharos)
       @name = name
-      @path = "/push/{name}/"
-      @base_uri client.base_uri
+      @path = base_uri + "/push/{name}/"
       @client = client
       @auth = { username: 'pharos', password: client.secret }
     end

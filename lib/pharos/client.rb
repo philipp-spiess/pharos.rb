@@ -1,6 +1,6 @@
 module Pharos
   class Client
-    
+
     attr_accessor :base_uri, :secret
 
     def initialize(options = {})
@@ -15,7 +15,7 @@ module Pharos
     def [](channel_name)
       raise ConfigurationError, 'Missing client configuration: please check that secret is configured.' unless configured?
       @channels ||= {}
-      @channels[channel_name.to_s] ||= Channel.new(channel_name, self)
+      @channels[channel_name.to_s] ||= Channel.new(channel_name, base_uri, self)
     end
 
     private
