@@ -1,6 +1,6 @@
 module Pharos
   class Client
-    attr_accessor :scheme, :host, :port, :secret
+    attr_accessor :base_uri, :secret
 
     # Initializes the client object.
     def initialize(options = {})
