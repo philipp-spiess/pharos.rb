@@ -7,8 +7,7 @@ module Pharos
     attr_reader :name
 
     def initialize(base_url, name, client = Pharos)
-      @uri = base_url.dup
-      @uri.path = @uri.path
+      @base_url = base_url
       @name = name
       @client = client
     end
@@ -82,8 +81,10 @@ module Pharos
         :message => body
       }
 
-      request = Pharos::Request.new(@uri.path, 'pharos', @client.secret)
-      request.post('/push/#{@name}', receivers, data)
+      Pharos.logger.debug(request.to_yml)
+
+      request = Pharos::Request.new(@base_url, 'pharos', @client.secret)
+      request.post("/push/#{name}", receivers, data)
     end
   end
 end

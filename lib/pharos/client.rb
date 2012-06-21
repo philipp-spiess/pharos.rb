@@ -5,22 +5,11 @@ module Pharos
     # Initializes the client object.
     def initialize(options = {})
       options = {
-        :scheme => 'http',
-        :host => 'pharos.saloon.io',
-        :port => 80,
+        :base_uri => 'pharos.saloon.io',
       }.merge(options)
-      @scheme, @host, @port, @secret = options.values_at(
-        :scheme, :host, :port, :secret
+      @base_uri, @secret = options.values_at(
+        :base_uri, :secret
       )
-    end
-
-    # @private Builds a connection url for Pharos
-    def url
-      URI::Generic.build({
-        :scheme => @scheme,
-        :host => @host,
-        :port => @port
-      })
     end
 
     # Return a channel by name
@@ -32,7 +21,7 @@ module Pharos
     def [](channel_name)
       raise ConfigurationError, 'Missing client configuration: please check that secret is configured.' unless configured?
       @channels ||= {}
-      @channels[channel_name.to_s] ||= Channel.new(url, channel_name, self)
+      @channels[channel_name.to_s] ||= Channel.new(@base_uri, channel_name, self)
     end
 
     private
