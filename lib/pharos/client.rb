@@ -27,7 +27,7 @@ module Pharos
     private
 
     def configured?
-      host && scheme && secret
+      base_uri && secret
     end
   end
 end

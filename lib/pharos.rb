@@ -32,7 +32,7 @@ module Pharos
       begin
         default_client[channel_name]
       rescue ConfigurationError
-        raise ConfigurationError, 'Missing configuration: please check that Pharos.key, Pharos.secret and Pharos.app_id are configured.'
+        raise ConfigurationError, 'Missing configuration: please check that Pharos.secret is configured.'
       end
     end
 
